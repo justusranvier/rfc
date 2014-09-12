@@ -1,4 +1,5 @@
 <pre>
+  BIP:     VPC01
   Title:   Hierarchy for Colored Voting Pool Deterministic Multisig Wallets
   Authors: Justus Ranvier <justus@monetas.net>
            Jimmy Song <jimmy@monetas.net>
