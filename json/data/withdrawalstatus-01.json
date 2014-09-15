@@ -1,0 +1,20 @@
+{
+    "roundID": 42,
+    "nextinputstart": { "series": { "pool": "IFOC:a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d:0:57043", "series": 42 }, "branch": 0, "index": 21 },
+    "nextchangestart": { "series": { "pool": "IFOC:a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d:0:57043", "series": 64 }, "branch": 2, "index": 7, 
+    "fees": 100000,
+    "outputs": [
+        { 
+            "outBailmentID": "bd5042c7a3c7326912cdbcda855b98903ff75a25",
+            "status": "success",
+            "transactions": [
+                {
+                    "ntxid": "f180b316e1d6316ad03c2ac089586cb9e9b16210238ceca5a24f66370b1a07fc",
+                    "index": 0,
+                    "amount": 22707611,
+                }
+            ]
+        }
+    }
+}
+
