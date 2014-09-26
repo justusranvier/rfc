@@ -1,11 +1,11 @@
 [
     {
-        "outBailmentID": "bd5042c7a3c7326912cdbcda855b98903ff75a25",
+        "outBailmentID": { "pool": "IFOC:a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d:0:57043", "server": "r1fUoHwJOWCuK3WBAAySjmKYqsG6G2TYIxdqY6YNuuG", "transaction": 42},
         "address": "12c6DSiU4Rq3P4ZxziKxzrL5LmMBrzjrJX",
         "amount": 50
     },
     {
-        "outBailmentID": "e2060dfb4800c88394d9daeff893e19a4ca0c037",
+        "outBailmentID": { "pool": "IFOC:a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d:0:57043", "server": "r1fUoHwJOWCuK3WBAAySjmKYqsG6G2TYIxdqY6YNuuG", "transaction": 9001},
         "address": "1NEU779yvLaFk39k4Q3QdLjwpWTdWCbzqL",
         "amount": 25
     }

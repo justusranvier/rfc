@@ -30,7 +30,7 @@
                 "type": "object",
                 "properties": {
                     "outBailmentID": {
-                        "type": "string",
+                        "$ref": "https://raw.githubusercontent.com/Open-Transactions/rfc/draft/json/schema/outbailmentid-01.json",
                         "description": "the identifier of the originating nym's outBailment message"
                     },
                     "status": {
@@ -58,17 +58,18 @@
                                     "minimum": 0,
                                     "exclusiveMinimum": true
                                 }
-                            }
+                            },
+                            "required": [ "ntxid","index","amount" ]
                         },
-                       "minItems": 0,
-                       "uniqueItems": true
-                    },
-                    "required": [ "outBailmentID","status" ]
-                }
+                        "minItems": 0,
+                        "uniqueItems": true
+                    }
+                },
+                "required": [ "outBailmentID","status" ]
             },
             "minItems": 1,
             "uniqueItems": true
-        },
-        "required": [ "nextinputstart","nextchangestart","fees","outputs"]
-    }
-}}
+        }
+    },
+    "required": [ "roundID","nextinputstart","nextchangestart","fees","outputs"]
+}
