@@ -14,7 +14,7 @@
         },
         "transaction": {
             "type": "number",
-            "description": "The transaction number associated with the outBailment",
+            "description": "The OT transaction number associated with the outBailment",
             "minimum": 0,
             "exclusiveMinimum": true
         }
