@@ -37,7 +37,7 @@
                         "type": "string",
                         "description": "Status code for the outBailment"
                     },
-                    "transactions": {
+                    "outpoints": {
                         "type": "array",
                         "items": {
                             "type": "object",
