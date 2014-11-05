@@ -45,31 +45,19 @@ Every script associated with an DHKEC colored ouput must be one of two forms:
 
 This ensures that every colored token in the blockchain contains one or more exposed public keys which can be used for Diffie-Hellman negociation.
 
-===Genesis Output===
-
-The genesis output of a DHKEC color has an additional restriction that it must be a pay-to-pubkey output, and only certain types of pay-to-multisig scripts are allowed:
-
-* n must be greater than or equal to two
-* m must be ≤ (n-1)
-
-The first two public keys listed in the genesis output script encode a BIP32 extended public key (pubkey + chain code).
-
-The first public key is the pubkey portion of the extended public keys, in compressed form.
-
-The second public key is the chain code, serialized as a compressed ECDSA key.
-
 ==Sending payments==
 
 The issuer of a DHKEC series can send payments to holders of the colored coins by using the Diffie-Hellman protocol to derive new payment addresses.
 
 # Divide the amount to be send by the number of issued units to determine the amount to be sent per unit
 # Select an index value and transmit this index to the colored coin holders out-of-band
-# Derive the private (a) and public (A) key given by the index and the extended key contained in the genesis output
+# Derive the private (a) and public (A=aG) key from an extended public key and an index value.
+## The issuer must have alread communicated the extended public key and index to the recipient(s) via a process outside the scope of this procedure.
 # Enumerate all colored units and get their associated scripts and color balances.
 # For pay-to-pubkey scripts:
-## Each script contains a public key (B), for which the holder controls the associated private key (b)
-## Calculate a shared secret S = aB
-## Derive a destination public key B'= B + S
+## Each script contains a public key (B=bG), for which the holder controls the associated private key (b)
+## Calculate a shared secret s = sha256(aB) = sha256(abG)
+## Derive a destination public key B'= B + sG
 ## Create a pay-to-pubkey-hash output where the amount is equal to step 1 * the color balance of the colored outpoint
 # For pay-to-multisig scripts:
 ## Each script contains n public keys (B1, B2 ... Bn), for which the holder controls the associated private keys (b1, b2 ... bn)
@@ -81,13 +69,13 @@ The issuer of a DHKEC series can send payments to holders of the colored coins b
 
 ==Receiving payments==
 
-The recipient can determine the script at which payments will be received by performing a similar Diffie-Hellman derivation as the sender after receiving the index value from the issuer.
+The recipient can determine the script at which payments will be received by performing a similar Diffie-Hellman derivation as the sender after receiving the index value and extended public key from the issuer.
 
 The scripts are calculated as in the Sending payments section, except:
 
-The recipient calculates the shared secret as: S = bA
+The recipient calculates the shared secret as: s = sha256(bA) = sha256(baG)
 
-The private key needed to spend the resulting outputs is calculated as b' = b + S 
+The private key needed to spend the resulting outputs is calculated as b' = b + s
 
 ==Compatible wallets==
 
@@ -95,6 +83,7 @@ The private key needed to spend the resulting outputs is calculated as b' = b + 
 
 ==Reference==
 
+* [[https://wiki.unsystem.net/en/index.php/DarkWallet/Stealth | Diffie-Hellman bitcoin address derivation]]
 * [[https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki|BIP32]]
 * [[https://github.com/chromaway/ngcccbase/wiki/Colors|Parametrized color kernels]]
 * [[https://github.com/chromaway/ngcccbase/wiki/EPOBC|EPOBC]]
