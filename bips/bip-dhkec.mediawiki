@@ -14,7 +14,7 @@ This BIP defines a new color kernel for transaction-based coloring suitable for 
 
 ==Motivation==
 
-This kernel is useful for creating dividible transferrable tokens which can be used to receive periodic payments from the issuer of the color.
+This kernel is useful for creating divisible transferrable tokens which can be used to receive periodic payments from the issuer of the color.
 
 It is not desirable for payments to be sent to the same script as where the colored coins are held, because this increases the risk of accidental mismanagement of the colored units.
 
@@ -60,9 +60,9 @@ The issuer of a DHKEC series can send payments to holders of the colored coins b
 ## Derive a destination public key B'= B + sG
 ## Create a pay-to-pubkey-hash output where the amount is equal to step 1 * the color balance of the colored outpoint
 # For pay-to-multisig scripts:
-## Each script contains n public keys (B1, B2 ... Bn), for which the holder controls the associated private keys (b1, b2 ... bn)
-## Calculate n shared secrets (S1 = aB1) ... (Sn = aBn)
-## Derive n destination public keys (B1' = B1 + S1) ... (Bn' = Bn + Sn)
+## Each script contains n public keys (B<sub>1</sub>, B<sub>2</sub> ... B<sub>n</sub>), for which the holder controls the associated private keys (b1, b2 ... bn)
+## Calculate n shared secrets (s<sub>1</sub> = sha256(aB<sub>1</sub>)) ... (s<sub>n</sub> = sha256(aBn))
+## Derive n destination public keys (B<sub>1</sub>' = B<sub>1</sub> + s<sub>1</sub>G) ... (B<sub>n</sub>' = B<sub>n</sub> + s<sub>n</sub>G)
 ## Create a P2SH output which is redeemed by a pay-to-multisig script where the amount is equal to step 1 * the color balance of the colored outpoint
 ### Use the same m and n parameters in the redeem script from the colored output.
 ### Place the destination public keys in the same order as those from which they were derived
