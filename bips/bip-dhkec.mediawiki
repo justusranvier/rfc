@@ -49,7 +49,7 @@ This ensures that every colored token in the blockchain contains one or more exp
 
 The issuer of a DHKEC series can send payments to holders of the colored coins by using the Diffie-Hellman protocol to derive new payment addresses.
 
-# Divide the amount to be send by the number of issued units to determine the amount to be sent per unit
+# Divide the amount to be sent by the number of issued units to determine the amount to be sent per unit
 # Select an index value and transmit this index to the colored coin holders out-of-band
 # Derive the private (a) and public (A=aG) key from an extended public key and an index value.
 ## The issuer must have alread communicated the extended public key and index to the recipient(s) via a process outside the scope of this procedure.
@@ -60,7 +60,7 @@ The issuer of a DHKEC series can send payments to holders of the colored coins b
 ## Derive a destination public key B'= B + sG
 ## Create a pay-to-pubkey-hash output where the amount is equal to step 1 * the color balance of the colored outpoint
 # For pay-to-multisig scripts:
-## Each script contains n public keys (B<sub>1</sub>, B<sub>2</sub> ... B<sub>n</sub>), for which the holder controls the associated private keys (b1, b2 ... bn)
+## Each script contains n public keys (B<sub>1</sub>, B<sub>2</sub> ... B<sub>n</sub>), for which the holder controls the associated private keys (b<sub>1</sub>, b<sub>2</sub> ... b<sub>n</sub>)
 ## Calculate n shared secrets (s<sub>1</sub> = sha256(aB<sub>1</sub>)) ... (s<sub>n</sub> = sha256(aB<sub>n</sub>))
 ## Derive n destination public keys (B<sub>1</sub>' = B<sub>1</sub> + s<sub>1</sub>G) ... (B<sub>n</sub>' = B<sub>n</sub> + s<sub>n</sub>G)
 ## Create a P2SH output which is redeemed by a pay-to-multisig script where the amount is equal to step 1 * the color balance of the colored outpoint
