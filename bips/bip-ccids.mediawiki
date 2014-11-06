@@ -3,6 +3,7 @@
   Title:   Base58 Serialization for Transaction-Based Color Descriptors
   Authors: Justus Ranvier <justus@monetas.net>
            Jimmy Song <jimmy@monetas.net>
+           Marko Bencun <marko@monetas.net>
   Status:  Draft
   Type:    Informational
   Created: 2014-11-06
@@ -23,7 +24,9 @@ Encoding is performed via the Bitcoin base58check function.
 The color descriptor is convered to a 40 byte payload as follows:
 
 32 bytes: transaction hash
+
 4 bytes: output index
+
 4 bytes: block height
 
 ==Version Byte==
@@ -31,7 +34,9 @@ The color descriptor is convered to a 40 byte payload as follows:
 The color kernel is encoded into the version byte as follows:
 
 EPOBC:	0x21 (E)
+
 DHKEC:	0x1E (D)
+
 SPOBC:	0x3F (S)
 
 ==Reference==
