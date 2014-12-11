@@ -1,0 +1,52 @@
+<pre>
+  BIP:     CCIDS
+  Title:   Base58 Serialization for Transaction-Based Color Descriptors
+  Authors: Justus Ranvier <justus@monetas.net>
+           Jimmy Song <jimmy@monetas.net>
+           Marko Bencun <marko@monetas.net>
+  Status:  Draft
+  Type:    Informational
+  Created: 2014-11-06
+</pre>
+
+==Abstract==
+
+This BIP defines a base58 represention of color descriptors used with transaction-based coloring.
+
+==Motivation==
+
+Base58 serialization makes color descriptors easier to use in URIs, and also makes them compatible with other systems that use base58-encoded identifiers.
+
+==Color Descriptors==
+
+Color descriptors in transaction-based coloring consist of a genesis outpoint for the color, and a kernel.
+
+Encoding a color descriptor into base58 is performed via the Bitcoin base58check function.
+
+==Version Byte==
+
+The kernel portion of the color descriptor is encoded into the version byte as follows:
+
+EPOBC:  0x21 (E)
+
+DHKEC:  0x1E (D)
+
+SPOBC:  0x3F (S)
+
+==Payload==
+
+The outpoint portion of a color descriptor is converted to a 40 byte payload as follows:
+
+32 bytes: transaction hash
+
+4 bytes: output index
+
+4 bytes: block height
+
+==Reference==
+
+* [[https://en.bitcoin.it/wiki/Base58Check_encoding|base58check]]
+* [[https://github.com/chromaway/ngcccbase/wiki/Colors|Parametrized color kernels]]
+* [[https://github.com/chromaway/ngcccbase/wiki/EPOBC|EPOBC]]
+* [[bip-dhkec.mediawiki|DHKEC]]
+* [[bip-spobc.mediawik|SPOBC]]

@@ -1,0 +1,75 @@
+<pre>
+  BIP:     SPOBC
+  Title:   Order-based Smart Property Coloring
+  Authors: Justus Ranvier <justus@monetas.net>
+           Jimmy Song <jimmy@monetas.net>
+  Status:  Draft
+  Type:    Informational
+  Created: 2014-11-04
+</pre>
+
+==Abstract==
+
+This BIP defines a new color kernel for transaction-based coloring.
+
+==Motivation==
+
+This kernel is useful for creating individible transferrable tokens which can be attached to resources outside the blockchain.
+
+
+==Color Descriptor==
+
+As with other transaction-based colors, the identifier for a SPOBC color consist of a named outpoint in the blockchain (the genesis output).
+
+The kernel prefix is SPOBC
+
+The first parameter is the txid of the genesis output
+
+The second parameter is the index of the genesis output
+
+The third parameter is the block height at which the genesis output transaction occurs
+
+===Example===
+
+SPOBC:a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d:0:57043
+
+==Kernel==
+
+Coloring is transferred from inputs to outputs on a strictly order-based scheme.
+
+Each SPOBC-colored input in a transaction is transferred to the output at the same index position, regardless of the relative satoshi value.
+
+If the output at the same index position as a SPOBC-colored input is non-spendable or non-existant, its color value is considered destroyed.
+
+A typical transaction involving SPOBC will have one colored input, one non-colored input (to pay transaction fees with), one colored output, and one non-colored change output.
+
+However multiple SPOBC-colored inputs (which by definition derive from different color identifiers) may be included in the same transaction for atomic swaps and other purposes.
+
+==Position==
+
+When referring to a particular smart property, its position is given by the script associated with the unspent outpoint containing the color.
+
+==Value==
+
+A smart property may have an optional value consisting of up to 40 bytes of data.
+
+Setting the value is performed by including an OP_RETURN output in the transaction which contains the position.
+
+==Usage==
+
+The value of a smart property is helpful for linking mutable data to a permanent identifier.
+
+The color descriptor of a SPOBC coin is immutable regardless of how much or how often the coin is moved on the blockchain. Each time the coin is moved, however, the entity which controls the coin has an opportunity to set a new value.
+
+This value might be the hash of some data external to the blockchain.
+
+If the entity or entities controlling the smart property are the same ones authorized to change the external data, then the blockchain can serve as a permanent record of these authorized changes.
+
+==Compatible wallets==
+
+* [[https://github.com/conformal/btcd|btcd]] contains the reference implementation of SPOBC.
+
+==Reference==
+
+* [[https://github.com/chromaway/ngcccbase/wiki/Colors|Parametrized color kernels]]
+* [[https://github.com/chromaway/ngcccbase/wiki/EPOBC|EPOBC]]
