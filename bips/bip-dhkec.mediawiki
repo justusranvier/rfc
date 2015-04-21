@@ -1,0 +1,89 @@
+<pre>
+  BIP:     DHKEC
+  Title:   Diffie-Hellman Key Exchange Coloring
+  Authors: Justus Ranvier <justus@monetas.net>
+           Jimmy Song <jimmy@monetas.net>
+  Status:  Draft
+  Type:    Informational
+  Created: 2014-11-04
+</pre>
+
+==Abstract==
+
+This BIP defines a new color kernel for transaction-based coloring suitable for Diffie-Hellman payments.
+
+==Motivation==
+
+This kernel is useful for creating divisible transferrable tokens which can be used to receive periodic payments from the issuer of the color.
+
+It is not desirable for payments to be sent to the same script as where the colored coins are held, because this increases the risk of accidental mismanagement of the colored units.
+
+==Color Descriptor==
+
+As with other transaction-based colors, the identifier for a DHKEC color consist of a named outpoint in the blockchain (the genesis output).
+
+The kernel prefix is DHKEC
+
+The first parameter is the txid of the genesis output
+
+The second parameter is the index of the genesis output
+
+The third parameter is the block height at which the genesis output transaction occurs
+
+===Example===
+
+DHKEC:a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d:0:57043
+
+==Kernel==
+
+All coloring rules are identical to EPOBC, except for restrictions on the allowed script types.
+
+Every script associated with an DHKEC colored ouput must be one of two forms:
+
+* Pay-to-pubkey
+* Pay-to-multisig
+
+This ensures that every colored token in the blockchain contains one or more exposed public keys which can be used for Diffie-Hellman negociation.
+
+==Sending payments==
+
+The issuer of a DHKEC series can send payments to holders of the colored coins by using the Diffie-Hellman protocol to derive new payment addresses.
+
+# Divide the amount to be sent by the number of issued units to determine the amount to be sent per unit
+# Select an index value and transmit this index to the colored coin holders out-of-band
+# Derive the private (a) and public (A=aG) key from an extended public key and an index value.
+## The issuer must have alread communicated the extended public key and index to the recipient(s) via a process outside the scope of this procedure.
+# Enumerate all colored units and get their associated scripts and color balances.
+# For pay-to-pubkey scripts:
+## Each script contains a public key (B=bG), for which the holder controls the associated private key (b)
+## Calculate a shared secret s = sha256(aB) = sha256(abG)
+## Derive a destination public key B'= B + sG
+## Create a pay-to-pubkey-hash output where the amount is equal to step 1 * the color balance of the colored outpoint
+# For pay-to-multisig scripts:
+## Each script contains n public keys (B<sub>1</sub>, B<sub>2</sub> ... B<sub>n</sub>), for which the holder controls the associated private keys (b<sub>1</sub>, b<sub>2</sub> ... b<sub>n</sub>)
+## Calculate n shared secrets (s<sub>1</sub> = sha256(aB<sub>1</sub>)) ... (s<sub>n</sub> = sha256(aB<sub>n</sub>))
+## Derive n destination public keys (B<sub>1</sub>' = B<sub>1</sub> + s<sub>1</sub>G) ... (B<sub>n</sub>' = B<sub>n</sub> + s<sub>n</sub>G)
+## Create a P2SH output which is redeemed by a pay-to-multisig script where the amount is equal to step 1 * the color balance of the colored outpoint
+### Use the same m and n parameters in the redeem script from the colored output.
+### Place the destination public keys in the same order as those from which they were derived
+
+==Receiving payments==
+
+The recipient can determine the script at which payments will be received by performing a similar Diffie-Hellman derivation as the sender after receiving the index value and extended public key from the issuer.
+
+The scripts are calculated as in the Sending payments section, except:
+
+The recipient calculates the shared secret as: s = sha256(bA) = sha256(baG)
+
+The private key needed to spend the resulting outputs is calculated as b' = b + s
+
+==Compatible wallets==
+
+* [[https://github.com/conformal/btcd|btcd]] contains the reference implementation of DHKEC.
+
+==Reference==
+
+* [[https://wiki.unsystem.net/en/index.php/DarkWallet/Stealth | Diffie-Hellman bitcoin address derivation]]
+* [[https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki|BIP32]]
+* [[https://github.com/chromaway/ngcccbase/wiki/Colors|Parametrized color kernels]]
+* [[https://github.com/chromaway/ngcccbase/wiki/EPOBC|EPOBC]]

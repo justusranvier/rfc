@@ -1,0 +1,18 @@
+{
+    "roundID": 42,
+    "transactions": [
+        {
+            "ntxid": "0000000000000000000000000000000000000000000000000000000000000000",
+            "inputs": [
+                [ "", "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "" ],
+                [ "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd", "", "" ]
+            ]
+        },
+        {
+            "ntxid": "1111111111111111111111111111111111111111111111111111111111111111",
+            "inputs": [
+                [ "", "", "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii" ]
+            ]
+        }
+    ]
+}
