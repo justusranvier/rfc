@@ -6,7 +6,7 @@
     "properties": {
         "series": {
             "description": "the series identifier containing the address",
-            "$ref": "https://raw.githubusercontent.com/Open-Transactions/rfc/master/json/schema/seriesid-01.json"
+            "$ref": "https://raw.githubusercontent.com/monetas/rfc/master/json/schema/seriesid-01.json"
         },
         "branch": {
             "type": "number",

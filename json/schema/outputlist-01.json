@@ -7,7 +7,7 @@
         "type": "object",
         "properties": {
             "outBailmentID": {
-                "$ref": "https://raw.githubusercontent.com/Open-Transactions/rfc/draft/json/schema/outbailmentid-01.json",
+                "$ref": "https://raw.githubusercontent.com/monetas/rfc/draft/json/schema/outbailmentid-01.json",
                 "description": "the identifier of the originating nym's outBailment message"
             },
             "address": {

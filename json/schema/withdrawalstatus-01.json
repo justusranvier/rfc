@@ -12,11 +12,11 @@
         },
         "nextinputstart": {
             "description": "The inputstart value to be used in the next consensus round as an address identifier",
-            "$ref": "https://raw.githubusercontent.com/Open-Transactions/rfc/master/json/schema/addressid-01.json"
+            "$ref": "https://raw.githubusercontent.com/monetas/rfc/master/json/schema/addressid-01.json"
         },
         "nextchangestart": {
             "description": "The changestart value to be used in the next consensus round as an address identifier",
-            "$ref": "https://raw.githubusercontent.com/Open-Transactions/rfc/master/json/schema/addressid-01.json"
+            "$ref": "https://raw.githubusercontent.com/monetas/rfc/master/json/schema/addressid-01.json"
         },
         "fees": {
             "type": "number",
@@ -30,7 +30,7 @@
                 "type": "object",
                 "properties": {
                     "outBailmentID": {
-                        "$ref": "https://raw.githubusercontent.com/Open-Transactions/rfc/draft/json/schema/outbailmentid-01.json",
+                        "$ref": "https://raw.githubusercontent.com/monetas/rfc/draft/json/schema/outbailmentid-01.json",
                         "description": "the identifier of the originating nym's outBailment message"
                     },
                     "status": {
